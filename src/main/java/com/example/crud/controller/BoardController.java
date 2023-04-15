@@ -2,6 +2,7 @@ package com.example.crud.controller;
 
 import com.example.crud.dto.BoardRequestDto;
 import com.example.crud.entity.Board;
+import com.example.crud.repository.BoardMapping;
 import com.example.crud.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +24,7 @@ public class BoardController {
     }
 
     @GetMapping("/api/getBoard")
-    public List<Board> getBoard() {
+    public List<BoardMapping> getBoard() {
         return boardService.getBoard();
     }
 }

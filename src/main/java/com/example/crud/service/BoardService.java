@@ -2,6 +2,7 @@ package com.example.crud.service;
 
 import com.example.crud.dto.BoardRequestDto;
 import com.example.crud.entity.Board;
+import com.example.crud.repository.BoardMapping;
 import com.example.crud.repository.BoardRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +24,8 @@ public class BoardService {
     }
 
     @Transactional
-    public List<Board> getBoard() {
+    public List<BoardMapping> getBoard() {
+
         return boardRepository.findAllByOrderByCreatedAtDesc();
     }
 }
