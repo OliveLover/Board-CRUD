@@ -25,7 +25,6 @@ public class BoardService {
 
     @Transactional
     public List<BoardMapping> getBoard() {
-
         return boardRepository.findAllByOrderByCreatedAtDesc();
     }
 }
