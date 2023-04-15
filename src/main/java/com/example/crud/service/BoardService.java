@@ -8,6 +8,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -26,5 +27,14 @@ public class BoardService {
     @Transactional
     public List<BoardMapping> getBoard() {
         return boardRepository.findAllByOrderByCreatedAtDesc();
+    }
+
+    @Transactional
+    public Long update(Long id, BoardRequestDto requestDto) {
+        Board board = boardRepository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("아이디가 존재하지 않습니다.")
+        );
+        board.update(requestDto);
+        return board.getId();
     }
 }
