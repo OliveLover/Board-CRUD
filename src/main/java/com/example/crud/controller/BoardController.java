@@ -29,14 +29,14 @@ public class BoardController {
 //    public List<BoardMapping> getBoard(@PathVariable Long id) {
 //        return boardService.selectGetBoard(id);
 //    }
-    @PutMapping("/api/modBoard/{id}")
-    public String updateBoard(@PathVariable Long id, @RequestBody BoardRequestDto requestDto) {
-        return boardService.update(id, requestDto);
+    @PutMapping("/api/modBoard/{id}/{password}")
+    public String updateBoard(@PathVariable Long id, @PathVariable String password, @RequestBody BoardRequestDto requestDto) {
+        return boardService.update(id, password, requestDto);
     }
 
-    @DeleteMapping("/api/delBoard/{id}")
-    public Long deleteBoard(@PathVariable Long id) {
-        return boardService.deleteBoard(id);
+    @DeleteMapping("/api/delBoard/{id}/{password}")
+    public String deleteBoard(@PathVariable Long id, @PathVariable String password) {
+        return boardService.deleteBoard(id, password);
     }
 
 }

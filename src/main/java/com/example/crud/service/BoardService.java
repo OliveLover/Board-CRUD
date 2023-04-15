@@ -30,16 +30,30 @@ public class BoardService {
     }
 
     @Transactional
-    public String update(Long id, BoardRequestDto requestDto) {
+    public String update(Long id, String password, BoardRequestDto requestDto) {
         Board board = boardRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("아이디가 존재하지 않습니다.")
         );
-        board.update(requestDto);
-        return board.getContents();
+        if(password.equals(board.getPassword())) {
+            board.update(requestDto);
+            return board.getContents();
+        }
+        else {
+            return "패스워드가 맞지 않습니다.";
+        }
+
     }
 
-    public Long deleteBoard(Long id) {
-        boardRepository.deleteById(id);
-        return id;
+    public String deleteBoard(Long id, String password) {
+        Board board = boardRepository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("아이디가 존재하지 않습니다.")
+        );
+        if(password.equals(board.getPassword())) {
+            boardRepository.deleteById(id);
+            return "삭제 완료";
+        }
+        else {
+            return "패스워드가 맞지 않습니다.";
+        }
     }
 }
