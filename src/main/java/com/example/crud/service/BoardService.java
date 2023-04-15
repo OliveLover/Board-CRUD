@@ -37,4 +37,9 @@ public class BoardService {
         board.update(requestDto);
         return board.getContents();
     }
+
+    public Long deleteBoard(Long id) {
+        boardRepository.deleteById(id);
+        return id;
+    }
 }
