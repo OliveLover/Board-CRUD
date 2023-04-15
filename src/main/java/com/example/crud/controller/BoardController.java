@@ -30,7 +30,7 @@ public class BoardController {
 //        return boardService.selectGetBoard(id);
 //    }
     @PutMapping("/api/modBoard/{id}")
-    public Long updateBoard(@PathVariable Long id, @RequestBody BoardRequestDto requestDto) {
+    public String updateBoard(@PathVariable Long id, @RequestBody BoardRequestDto requestDto) {
         return boardService.update(id, requestDto);
     }
 
