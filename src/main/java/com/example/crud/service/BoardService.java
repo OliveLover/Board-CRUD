@@ -8,7 +8,6 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -18,15 +17,24 @@ public class BoardService {
     private final BoardRepository boardRepository;
 
     @Transactional
-    public Board saveBoard(BoardRequestDto requestDto) {
+    public String saveBoard(BoardRequestDto requestDto) {
         Board board = new Board(requestDto);
         boardRepository.save(board);
-        return board;
+        return board.getContents();
     }
 
     @Transactional
     public List<BoardMapping> getBoard() {
         return boardRepository.findAllByOrderByCreatedAtDesc();
+    }
+
+    @Transactional
+    public List<BoardMapping> selectGetBoard(Long id) {
+        List<BoardMapping> findBoard = boardRepository.findOneById(id);
+        if(findBoard.isEmpty()) {
+            throw new IllegalArgumentException("아이디가 존재하지 않습니다.");
+        }
+        return findBoard;
     }
 
     @Transactional
@@ -56,4 +64,6 @@ public class BoardService {
             return "패스워드가 맞지 않습니다.";
         }
     }
+
+
 }

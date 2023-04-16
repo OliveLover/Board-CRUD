@@ -1,7 +1,6 @@
 package com.example.crud.controller;
 
 import com.example.crud.dto.BoardRequestDto;
-import com.example.crud.entity.Board;
 import com.example.crud.repository.BoardMapping;
 import com.example.crud.service.BoardService;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +15,7 @@ public class BoardController {
     private final BoardService boardService;
 
     @PostMapping("/api/saveBoard")
-    public Board saveBoard(@RequestBody BoardRequestDto requestDto){
+    public String saveBoard(@RequestBody BoardRequestDto requestDto){
         return boardService.saveBoard(requestDto);
     }
 
@@ -25,10 +24,10 @@ public class BoardController {
         return boardService.getBoard();
     }
 
-//    @GetMapping("/api/getBoard/{id}")
-//    public List<BoardMapping> getBoard(@PathVariable Long id) {
-//        return boardService.selectGetBoard(id);
-//    }
+    @GetMapping("/api/getBoard/{id}")
+    public List<BoardMapping> selectGetBoard(@PathVariable Long id) {
+        return boardService.selectGetBoard(id);
+    }
     @PutMapping("/api/modBoard/{id}/{password}")
     public String updateBoard(@PathVariable Long id, @PathVariable String password, @RequestBody BoardRequestDto requestDto) {
         return boardService.update(id, password, requestDto);
