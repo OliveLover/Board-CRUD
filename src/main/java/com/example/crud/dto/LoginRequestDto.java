@@ -1,11 +1,12 @@
 package com.example.crud.dto;
 
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
-public class BoardRequestDto {
+@Setter
+public class LoginRequestDto {
     private String userName;
-    private String title;
-    private String contents;
     private String password;
+
 }

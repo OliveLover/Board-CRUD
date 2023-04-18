@@ -12,9 +12,9 @@ import lombok.NoArgsConstructor;
 public class Board extends TimeStamped {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long boardId;
     @Column(nullable = false)
-    private String writerName;
+    private String userName;
 
     @Column(nullable = false)
     private String title;
@@ -26,7 +26,7 @@ public class Board extends TimeStamped {
     private String password;
 
     public Board(BoardRequestDto requestDto) {
-        this.writerName = requestDto.getWriterName();
+        this.userName = requestDto.getUserName();
         this.title = requestDto.getTitle();
         this.contents = requestDto.getContents();
         this.password = requestDto.getPassword();
